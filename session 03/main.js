@@ -27,6 +27,8 @@ const material = new THREE.ShaderMaterial({
     transparency: true,
 });
 
+//tes
+
 const geometry = new THREE.TorusGeometry(1,-3,11);
 
 const cube = new THREE.Mesh( geometry, material );
