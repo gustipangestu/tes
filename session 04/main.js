@@ -42,12 +42,12 @@ const plane = new THREE.Mesh( geometry, material );
 
 scene.add(plane); 
 
-function animate() {
-    requestAnimationFrame(animate);
-    cube2.rotation.x += 0.01;
-    // cube.rotation.y += 0.001;
-    cube2.rotation.z += 0.01;
-    renderer.render(scene, camera);
-}
+function animate() { 
+
+    requestAnimationFrame(animate); 
+    plane.rotation.x += 0.01; 
+    plane.rotation.z += 0.01; 
+    renderer.render(scene, camera); 
+    } 
 
 animate();
