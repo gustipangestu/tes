@@ -7,25 +7,17 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
-// THREE.BoxGeometry
-// const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-// const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-// const cube = new THREE.Mesh( geometry, material );
-// scene.add( cube );
-
-// THREE.CapsuleGeometry
-const geometry = new THREE.CapsuleGeometry(1,1,4,8);
-const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-const capsule = new THREE.Mesh( geometry, material );
-scene.add(capsule);
+const material = new THREE.SpriteMaterial({ size: 5,
+      color: 0xffffff })
+    const sprite = new THREE.Sprite(material)
+    sprite.position.copy(new THREE.Vector3(1,1,1))
 
 camera.position.z = 5;
 
 function animate() {
 	requestAnimationFrame( animate );
 
-	cube.rotation.x += 0.01;
-	cube.rotation.y += 0.01;
+	
 
 	renderer.render( scene, camera );
 }
