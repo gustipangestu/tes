@@ -34,15 +34,15 @@ document.body.appendChild(renderer.domElement);
 
 const createGhostTexture = () => {
     const canvas = document.createElement('canvas');
-    canvas.width = 32;
-    canvas.height = 32;
+    canvas.width = 70;
+    canvas.height = 70;
     const ctx = canvas.getContext('2d');
     // the body
     ctx.translate(-81, -84);
     ctx.fillStyle = 'orange';
     ctx.beginPath();
     ctx.moveTo(83, 116);
-    ctx.lineTo(83, 102);
+    ctx.lineTo(83, 90);
     ctx.bezierCurveTo(83, 94, 89, 88, 97, 88);
     // some code removed for clarity
     ctx.fill();
@@ -70,7 +70,7 @@ const createGhostTexture = () => {
 const createPoints = () => {
     const points = [];
     const range = 15;
-    for (let i = 0; i < 15000; i++) {
+    for (let i = 0; i < 1500000; i++) {
         let particle = new THREE.Vector3(
             Math.random() * range - range / 2,
             Math.random() * range - range / 2,
@@ -80,7 +80,7 @@ const createPoints = () => {
     }
     const colors = new Float32Array(points.length * 3);
     points.forEach((e, i) => {
-        const c = new THREE.Color(Math.random() * 0xffffff);
+        const c = new THREE.Color(Math.random() * 0xff00ff);
         colors[i * 3] = c.r;
         colors[i * 3 + 1] = c.g;
         colors[i * 3 + 2] = c.b;
