@@ -2,6 +2,7 @@ import * as THREE from 'three';
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+scene.background = new THREE.Color('skyblue'); 
 
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -98,20 +99,24 @@ document.body.appendChild(renderer.domElement);
 // scene.add(points);
 
 
-// draw a line
-const drawLine = () => {
-    var c = document.createElement("myCanvas");
-    canvas.width = 700;
-    canvas.height = 700;
-    var ctx = c.getContext("2d");
-    ctx.moveTo(0, 0);
-    ctx.lineTo(700, 100);
-    ctx.stroke();
-    const texture = new THREE.Texture(canvas);
-    texture.needsUpdate = true;
-    return texture;
-
-}
+// add texture
+const geometry = new THREE.BoxGeometry(10, 10, 1);
+const texture = new THREE.TextureLoader().load("raindrop.png");
+// texture.wrapS = THREE.RepeatWrapping;
+// texture.wrapT = THREE.RepeatWrapping;
+// texture.repeat.set( 4, 4 );
+const material = new THREE.MeshStandardMaterial( { map: texture, transparent:true } );
+const sprite = new THREE.Mesh(geometry, material)
+scene.add( sprite );
+// const material = new THREE.PointsMaterial({
+//     size: 0.5,
+//     vertexColors: false,
+//     color: 0xffffff,`
+//     map: texture,
+//     transparent: true,
+//     opacity: 0.8,
+//     alphaTest: 0.01
+// });
 
 camera.position.z = 5;
 
