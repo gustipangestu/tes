@@ -119,7 +119,6 @@ scene.add( sprite );
 // });
 
 camera.position.z = 5;
-
 function animate() {
     requestAnimationFrame(animate);
 
