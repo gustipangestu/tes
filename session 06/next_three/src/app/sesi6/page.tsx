@@ -2,8 +2,8 @@
 
 import { Canvas, MeshBasicMaterialProps, RingGeometryProps, ThreeElements, useFrame, extend } from '@react-three/fiber'
 import React, { useState, useEffect, useRef } from 'react';
-import { BoxGeometry, Mesh } from 'three'
-extend({ BoxGeometry })
+import { BoxGeometry, ConeGeometry, Mesh } from 'three'
+extend({ ConeGeometry })
 
 function RotationMesh(){
     const meshRef = useRef<Mesh>(null!)
@@ -12,13 +12,14 @@ function RotationMesh(){
     useFrame( ({clock}) => {
         const a = clock.getElapsedTime();
         meshRef.current.rotation.x = a;
+        meshRef.current.rotation.y = a;
     })
     
     return (
         <>
         <mesh ref={meshRef}>
-          <boxGeometry />
-          <meshPhongMaterial color="royalblue" />
+          <coneGeometry args={[2,2,3]} />
+          <meshPhongMaterial color="green" />
         </mesh>
         </>
       );
@@ -32,7 +33,7 @@ export default function sesi6() {
             <div className='w-dvh h-dvh'>
             <Canvas>
         <RotationMesh />
-        <ambientLight intensity={0.1} />
+        <ambientLight intensity={3.9} />
         <directionalLight />
       </Canvas>
             </div>
