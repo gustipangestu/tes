@@ -7,16 +7,7 @@ import THREE, { BoxGeometry, ConeGeometry, Mesh } from 'three'
 import { color } from 'three/examples/jsm/nodes/Nodes.js';
 extend({ ConeGeometry })
 
-function colorr(hv: boolean){
-    var color;
-    if(hv==true){
-        color = "pink"
-    }
-    else{
-        color = "blue"
-    }
-    return color;
-}
+
 
 function RotationMesh() {
     
@@ -72,9 +63,5 @@ export default function sesi6() {
 
 }
 
-function useHover() {
-    const [hovered, hover] = useState(false)
-    return [hovered, { onPointerOver: () => hover(true), onPointerOut: () => hover(false) }]
-  }
 
   
