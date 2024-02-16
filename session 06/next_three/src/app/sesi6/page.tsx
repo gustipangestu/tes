@@ -53,7 +53,7 @@ export default function sesi6() {
                 
                     <RotationMesh />
                     
-                    <ambientLight intensity={3.9} />
+                    <ambientLight intensity={0.9} />
                     <directionalLight />
                     <OrbitControls/>
                 </Canvas>
