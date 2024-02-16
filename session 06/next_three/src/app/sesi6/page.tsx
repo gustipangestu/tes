@@ -1,12 +1,23 @@
 "use client"
 
-import { OrbitControls } from '@react-three/drei';
+import { CameraControls, KeyboardControls, OrbitControls, useKeyboardControls } from '@react-three/drei';
 import { Canvas, MeshBasicMaterialProps, RingGeometryProps, ThreeElements, useFrame, extend } from '@react-three/fiber'
+import { CapsuleCollider, RigidBody, useRapier } from '@react-three/rapier';
 import React, { useState, useEffect, useRef } from 'react';
 import THREE, { BoxGeometry, ConeGeometry, Mesh } from 'three'
 import { color } from 'three/examples/jsm/nodes/Nodes.js';
 extend({ ConeGeometry })
 
+// function player(lerp = THREE.MathUtils.lerp){
+//   const ref = useRef<Mesh>(null!);
+//   const [, get] = useKeyboardControls();
+
+//   useFrame((state)=> {
+//     const { forward, backward, left, right, jump } = get();
+//     const velocity = ref.current.lin
+//     state.camera.position.set(...ref.current.translateX());
+//   });
+// }
 
 
 function RotationMesh() {
@@ -49,14 +60,27 @@ export default function sesi6() {
     return (
         <>
             <div className='w-dvh h-dvh'>
+                <KeyboardControls 
+                map={[
+                    { name: "forward", keys: ["ArrowUp", "w", "W"] },
+                    { name: "backward", keys: ["ArrowDown", "s", "S"] },
+                    { name: "left", keys: ["ArrowLeft", "a", "A"] },
+                    { name: "right", keys: ["ArrowRight", "d", "D"] },
+                    { name: "jump", keys: ["Space"] },
+                  ]}
+                >
                 <Canvas style={{ background: "hotpink" }}>
                 
-                    <RotationMesh />
-                    
-                    <ambientLight intensity={0.9} />
-                    <directionalLight />
-                    <OrbitControls/>
-                </Canvas>
+                <RotationMesh />
+                
+                <ambientLight intensity={0.9} />
+                <directionalLight />
+                <OrbitControls/>
+                <CameraControls makeDefault />
+            </Canvas>
+                </KeyboardControls>
+           
+                
             </div>
         </>
     )
