@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
+import { OrbitControls, DragControls } from "three/examples/jsm/Addons.js";
 
 
 
@@ -19,17 +20,18 @@ const ThreeScene: React.FC = () => {
 
             const geometry = new THREE.BoxGeometry();
             const material = new THREE.MeshBasicMaterial({ color: "skyblue" });
-            const cube = new THREE.Mesh(geometry, material);
-            scene.add(cube);
+            const cube = [new THREE.Mesh(geometry, material)];
+            scene.add(cube[0]);
 
             const animate = () => {
                 requestAnimationFrame(animate);
-                cube.rotation.x += 0.01;
-                cube.rotation.y += 0.01;
+                cube[0].rotation.x += 0.01;
+                cube[0].rotation.y += 0.01;
 
                 renderer.render(scene, camera);
             };
             animate();
+            const controls = new DragControls(cube, camera, renderer.domElement);
 
         }
     }, []);
