@@ -1,5 +1,6 @@
 "use client"
 
+import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
@@ -35,13 +36,17 @@ const ThreeScene: React.FC = () => {
     return <div ref={containerRef} />;
 };
 
-const sesi7=()=> {
+function sesi7(){
+    const router = useRouter();
+    const hanleClick=()=>{
+        router.push('/sesi6');
+    };
 
     return (
         <>
             <div>
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                    button
+                <button onClick={hanleClick} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Move
                 </button>
             </div>
             <div>
