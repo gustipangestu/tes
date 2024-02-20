@@ -8,7 +8,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 
 const shiba: React.FC = () => {
-    let shibaModel: any;
+    let shibaModel:any;
     const containerRef = useRef<HTMLDivElement>(null!);
     useEffect(() => {
         if (typeof window !== 'undefined') {
@@ -22,18 +22,19 @@ const shiba: React.FC = () => {
 
             
 
-            let loader = new GLTFLoader();
+            const loader = new GLTFLoader();
+            
             loader.load(
                 '/model/shiba.glb',
                 function (gltf) {
-                    shibaModel = gltf.scene;
+                    shibaModel = [gltf.scene]
                     gltf.animations; // Array<THREE.AnimationClip>
                     gltf.scene; // THREE.Group
                     gltf.scenes; // Array<THREE.Group>
                     gltf.cameras; // Array<THREE.Camera>
                     gltf.asset; // Object
                     renderer.render(scene, camera);
-                    scene.add(gltf.scene);
+                    scene.add(gltf.scene)
                     
                     animate();
                 },
@@ -44,13 +45,14 @@ const shiba: React.FC = () => {
                     console.log(error)
                 }
             );
+            
             const animate = () => {
                 requestAnimationFrame(animate);
                 shibaModel.rotation.x += 0.01;
                 shibaModel.rotation.y += 0.001;
                 renderer.render(scene, camera);
             }
-            const controls = new DragControls(shibaModel, camera, renderer.domElement);
+            // const controls = new DragControls(shibaModel, camera, renderer.domElement);
         }
     }, []);
 
