@@ -6,13 +6,16 @@ import { DragControls, GLTF } from "three/examples/jsm/Addons.js";
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 
-
+const scene = new THREE.Scene();
 const shiba: React.FC = () => {
-    let shibaModel:any;
+    let shibaModel: any;
+    
+   
     const containerRef = useRef<HTMLDivElement>(null!);
+    
     useEffect(() => {
         if (typeof window !== 'undefined') {
-            const scene = new THREE.Scene();
+            
             scene.background = new THREE.Color("red");
             const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
             const renderer = new THREE.WebGLRenderer();
@@ -20,23 +23,35 @@ const shiba: React.FC = () => {
             containerRef.current?.appendChild(renderer.domElement);
             camera.position.z = 5;
 
-            
-
             const loader = new GLTFLoader();
             
+
             loader.load(
                 '/model/shiba.glb',
                 function (gltf) {
-                    shibaModel = [gltf.scene]
-                    gltf.animations; // Array<THREE.AnimationClip>
-                    gltf.scene; // THREE.Group
-                    gltf.scenes; // Array<THREE.Group>
-                    gltf.cameras; // Array<THREE.Camera>
-                    gltf.asset; // Object
-                    renderer.render(scene, camera);
-                    scene.add(gltf.scene)
                     
+                    // gltf.animations; // Array<THREE.AnimationClip>
+                    // gltf.scene; // THREE.Group
+                    // gltf.scenes; // Array<THREE.Group>
+                    // gltf.cameras; // Array<THREE.Camera>
+                    // gltf.asset; // Object
+                    scene.add(gltf.scene)
+
+                    const animate = () => {
+                        requestAnimationFrame(animate);
+                        gltf.scene.rotation.x += 0.01;
+                        gltf.scene.rotation.y += 0.001;
+                        renderer.render(scene, camera);
+                    }
+                    
+                    
+                   
                     animate();
+                    const controls = new DragControls(gltf.scenes, camera, renderer.domElement);
+                    // controls.addEventListener('hoveron', function () {
+                
+                    //     console.log("hover cuy")
+                    // })
                 },
                 (xhr) => {
                     console.log((xhr.loaded / xhr.total) * 100 + '% loaded')
@@ -45,21 +60,13 @@ const shiba: React.FC = () => {
                     console.log(error)
                 }
             );
-            
-            const animate = () => {
-                requestAnimationFrame(animate);
-                shibaModel.rotation.x += 0.01;
-                shibaModel.rotation.y += 0.001;
-                renderer.render(scene, camera);
-            }
-            // const controls = new DragControls(shibaModel, camera, renderer.domElement);
         }
     }, []);
 
 
 
     return (
-        <div ref={containerRef}/>
+        <div ref={containerRef} />
     );
 };
 
