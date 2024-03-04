@@ -11,7 +11,7 @@ extend({ ConeGeometry })
 
 // function player(lerp = THREE.MathUtils.lerp){
 //   const ref = useRef<Mesh>(null!);
-//   const [, get] = useKeyboardControls();
+//   const [, get] = useKeyboardControls();=
 
 //   useFrame((state)=> {
 //     const { forward, backward, left, right, jump } = get();
