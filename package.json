@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@premieroctet/next-crud": "^3.0.0",
     "@react-three/drei": "^9.97.5",
     "lil-gui": "^0.19.1",
     "three": "^0.159.0"
